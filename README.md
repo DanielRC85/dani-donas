@@ -1,36 +1,67 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🍩 Dani Donas — High-Conversion E-commerce Landing Page
 
-## Getting Started
+![Next.js](https://img.shields.io/badge/Next.js_16-000000?style=for-the-badge&logo=next.js&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_v4-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
+![Architecture](https://img.shields.io/badge/Clean_Architecture-4CAF50?style=for-the-badge&logo=checkmarx&logoColor=white)
 
-First, run the development server:
+> **"Programadas para enamorar"** — Plataforma web ultrarrápida diseñada para maximizar la conversión de ventas de una marca local de repostería, conectando el escaparate digital directamente con un embudo de atención por WhatsApp.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+🔗 **[Ver Demo en Vivo](https://dani-donas.vercel.app/)** 
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🚀 Visión General del Proyecto
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Dani Donas es una *Single Page Application* (SPA) construida bajo el principio **KISS (Keep It Simple, Stupid)** y **YAGNI (You Aren't Gonna Need It)**. 
 
-## Learn More
+En lugar de sobre-ingeniar un backend completo desde el día uno, el proyecto se enfoca en resolver el problema inmediato del negocio: **Vender**. Se utiliza Next.js para renderizado estático de ultra-alta velocidad y una integración directa con WhatsApp para el cierre de ventas, validando el mercado con cero costos de servidor.
 
-To learn more about Next.js, take a look at the following resources:
+### ✨ Características Principales
+* **UI/UX Premium:** Diseño moderno "Dark/Neon" con efectos de partículas en Canvas y sombras múltiples de alto rendimiento.
+* **Catálogo Dinámico:** Separación lógica entre productos "Clásicos" y "Especiales" con cálculo de promociones en tiempo real.
+* **WhatsApp Checkout:** Generación de enlaces codificados (URL-encoded) con la información del pedido y el producto exacto seleccionado por el usuario.
+* **Event Tracking Ready:** Utilidad de analíticas integrada (`trackLead`) preparada para enchufarse a Google Analytics o Meta Pixel.
+* **100% Responsivo:** Adaptabilidad perfecta desde dispositivos móviles pequeños hasta pantallas ultrawide.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🧠 Arquitectura y Buenas Prácticas
 
-## Deploy on Vercel
+El código está estructurado pensando en la futura escalabilidad hacia un ecosistema SaaS (preparado para integrarse con sistemas automatizados como *Synapse*).
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+* **Domain-Driven Design (DDD) Ligero:** Los modelos de datos (`Product`) están tipados estrictamente en TypeScript en su propia capa de dominio (`src/domain/`).
+* **Separación de Responsabilidades (SOLID):** La lógica de negocio (generación de links, tracking) vive en servicios independientes (`src/utils/`), manteniendo los componentes de React puramente visuales y limpios.
+* **Optimizaciones de Next.js:** Uso estratégico de `next/image` con priorización de carga (`priority=true` en LCP) para asegurar métricas perfectas en Web Vitals.
+* **Clean Code:** Espaciados controlados, nombres de variables semánticos y componentes modulares (`ProductCard`, `PromoBanner`).
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## 🛠️ Stack Tecnológico
+
+* **Framework:** Next.js 16.2 (App Router)
+* **Lenguaje:** TypeScript
+* **Estilos:** Tailwind CSS v4 + Inline Styles dinámicos.
+* **Despliegue:** Vercel (Recomendado para zero-config estático)
+
+---
+
+## ⚙️ Instalación y Desarrollo Local
+
+Si deseas clonar y correr este proyecto en tu máquina local:
+
+1. Clona el repositorio:
+   ```bash
+   git clone [https://github.com/DanielRC85/dani-donas.git](https://github.com/DanielRC85/dani-donas.git)
+
+2. Instala las dependencias:
+   npm install
+
+3. Inicia el servidor de desarrollo:
+   npm run dev
+
+4. Abre http://localhost:3000 en tu navegador.   
+
+
+Desarrollado con ☕ y buenas prácticas por [Daniel Romero Cortes]
+   
