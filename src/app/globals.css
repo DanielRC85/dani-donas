@@ -1,37 +1,58 @@
 @import "tailwindcss";
 
-/* ✅ Tailwind v4 — usa @import, NO @tailwind base/components/utilities */
-
-/* Reset base */
-*,
-*::before,
-*::after {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-/* Base del proyecto */
-html {
-  scroll-behavior: smooth;
-}
-
+/* ==========================================
+   Reset y Base
+   ========================================== */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
 body {
-  background: #000;
+  background: #050d1a;
   color: #fff;
   font-family: "Geist Sans", Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Scrollbar personalizado */
-::-webkit-scrollbar {
-  width: 6px;
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #111; }
+::-webkit-scrollbar-thumb { background: #ec4899; border-radius: 3px; }
+
+/* ==========================================
+   Arquitectura UI (Glassmorphism)
+   ========================================== */
+@layer components {
+  .glass-banner {
+    position: relative; overflow: hidden; width: 100%; display: flex; justify-content: center;
+    background: linear-gradient(135deg, rgba(255,45,120,0.08) 0%, rgba(124,58,237,0.08) 50%, rgba(0,245,255,0.05) 100%);
+    backdrop-filter: blur(8px);
+    border-top: 1px solid rgba(255,45,120,0.2);
+    border-bottom: 1px solid rgba(255,45,120,0.2);
+  }
 }
-::-webkit-scrollbar-track {
-  background: #111;
+
+/* ==========================================
+   Animaciones Nativas (Aceleradas por GPU)
+   ========================================== */
+@keyframes float {
+  0%, 100% { translate: 0 0px; }
+  50% { translate: 0 -12px; } 
 }
-::-webkit-scrollbar-thumb {
-  background: #ec4899;
-  border-radius: 3px;
+
+@keyframes scroll-x {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@layer utilities {
+  .animate-float { animation: float 4s ease-in-out infinite; }
+  .animate-float-delayed { animation: float 4s ease-in-out infinite; animation-delay: 2s; }
+  
+  /* Animación matemática exacta para el carrusel */
+  .animate-scroll-infinite {
+    animation: scroll-x 30s linear infinite;
+    width: max-content;
+  }
+  .animate-scroll-infinite:hover {
+    animation-play-state: paused;
+  }
 }
