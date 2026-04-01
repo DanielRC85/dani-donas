@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
 import { generatePromoLink } from "@/utils/whatsapp";
 
@@ -18,53 +19,63 @@ interface UGCPhoto {
   comment: string;
 }
 
+const ugcPhotos: UGCPhoto[] = [
+  { id: 1, name: "Sebas",   src: "/images/ugc/choco_chispas_chocolate.jpeg", alt: "Caja de donas de chocolate",  rating: 5, comment: "¡Muy chimbas! Ya deseo volver a pedir, me salvaron el antojo de la tarde." },
+  { id: 2, name: "Jeison",  src: "/images/ugc/choco_rellena.jpeg",           alt: "Dona de chocolate rellena",   rating: 5, comment: "Están muy ricas y bien rellenitas, no escatiman con el sabor." },
+  { id: 3, name: "Adriana", src: "/images/ugc/arequipe.jpeg",                alt: "Dona de arequipe mordida",    rating: 5, comment: "La de arequipe me encanta, es mi favorita absoluta. ¡Tienen que probarla!" },
+  { id: 4, name: "Augusto", src: "/images/ugc/Bosto_clasicas.jpeg",          alt: "Caja de donas Boston",        rating: 5, comment: "La Boston con maní y relleno de arequipe es deliciosa, el sabor es de otro nivel." },
+  { id: 5, name: "Santi",   src: "/images/ugc/Boston_chispas.jpeg",          alt: "Dona Boston con chispas",     rating: 5, comment: "Pedí la caja x4 para compartir y todas estaban 10/10. Muy frescas." },
+];
+
+// 🚀 SIMULACIÓN SUPERADA: Multiplicamos x8 para asegurar que monitores UltraWide y 4K
+// tengan suficiente ancho para completar el bucle CSS del 50% sin espacios vacíos.
+const infinitePhotos = [
+  ...ugcPhotos, ...ugcPhotos, ...ugcPhotos, ...ugcPhotos,
+  ...ugcPhotos, ...ugcPhotos, ...ugcPhotos, ...ugcPhotos
+];
+
 export const UGCCarousel = () => {
   const [selectedPhoto, setSelectedPhoto] = useState<UGCPhoto | null>(null);
   const link = generatePromoLink();
 
-  const ugcPhotos: UGCPhoto[] = [
-    { id: 1, name: "Sebas", src: "/images/ugc/choco_chispas_chocolate.jpeg", alt: "Caja de donas de chocolate", rating: 5, comment: "¡Muy chimbas! Ya deseo volver a pedir, me salvaron el antojo de la tarde." },
-    { id: 2, name: "Jeison", src: "/images/ugc/choco_rellena.jpeg", alt: "Dona de chocolate rellena", rating: 5, comment: "Están muy ricas y bien rellenitas, no escatiman con el sabor." },
-    { id: 3, name: "Adriana", src: "/images/ugc/arequipe.jpeg", alt: "Dona de arequipe mordida", rating: 5, comment: "La de arequipe me encanta, es mi favorita absoluta. ¡Tienen que probarla!" },
-    { id: 4, name: "Augusto", src: "/images/ugc/Bosto_clasicas.jpeg", alt: "Caja de donas Boston", rating: 5, comment: "La Boston con maní y relleno de arequipe es deliciosa, el sabor es de otro nivel." },
-    { id: 5, name: "Santi", src: "/images/ugc/Boston_chispas.jpeg", alt: "Dona Boston con chispas", rating: 5, comment: "Pedí la caja x4 para compartir y todas estaban 10/10. Muy frescas." },
-  ];
-
-  const infinitePhotos = [...ugcPhotos, ...ugcPhotos];
-
   return (
     <>
       <section className="py-20 bg-black/40 border-t border-b border-white/5 w-full flex flex-col items-center overflow-hidden">
-        
+
         <div className="max-w-6xl w-full px-5 flex flex-col items-center mb-12">
           <p className="text-xs font-bold uppercase tracking-widest text-pink-500 mb-3">
             💖 Lo que dicen nuestros clientes
           </p>
           <h2 className="text-3xl md:text-5xl font-black text-white leading-tight max-w-2xl text-center">
-            Tus pedidos, <br className="hidden md:block"/> Nuestra realidad
+            Tus pedidos,{" "}
+            <br className="hidden md:block" />
+            Nuestra realidad
           </h2>
           <p className="text-base text-gray-400 mt-2 text-center">
             Haz clic en las fotos para verlas de cerca
           </p>
         </div>
 
-        <div className="relative w-full max-w-[100vw] overflow-hidden flex">
-          <div className="absolute left-0 top-0 bottom-0 w-20 md:w-32 bg-gradient-to-r from-[#050d1a] to-transparent z-10 pointer-events-none" />
-          <div className="absolute right-0 top-0 bottom-0 w-20 md:w-32 bg-gradient-to-l from-[#050d1a] to-transparent z-10 pointer-events-none" />
+        <div className="relative w-full overflow-hidden flex">
+          {/* Fade laterales extendidos para mayor suavidad en pantallas grandes */}
+          <div className="absolute left-0 top-0 bottom-0 w-24 md:w-48 bg-gradient-to-r from-[#050d1a] to-transparent z-10 pointer-events-none" />
+          <div className="absolute right-0 top-0 bottom-0 w-24 md:w-48 bg-gradient-to-l from-[#050d1a] to-transparent z-10 pointer-events-none" />
 
-          {/* CINTA INFINITA */}
+          {/* Cinta infinita */}
           <div className="flex animate-scroll-infinite gap-6 pr-6">
             {infinitePhotos.map((photo, index) => (
-              <div 
-                key={`${photo.id}-${index}`} 
+              <div
+                key={`${photo.id}-${index}`}
                 onClick={() => setSelectedPhoto(photo)}
-                className="w-56 h-auto flex-shrink-0 flex flex-col rounded-3xl bg-white/5 border border-white/10 overflow-hidden backdrop-blur-sm transition-all duration-300 hover:border-pink-500/30 hover:shadow-[0_15px_40px_rgba(255,45,120,0.15)] group cursor-pointer"
+                className="w-56 flex-shrink-0 flex flex-col rounded-3xl bg-white/5 border border-white/10 overflow-hidden backdrop-blur-sm transition-all duration-300 hover:border-pink-500/30 hover:shadow-[0_15px_40px_rgba(255,45,120,0.15)] group cursor-pointer"
               >
-                <div className="w-full h-56 overflow-hidden bg-black/50 relative">
-                  <img 
-                    src={photo.src} 
-                    alt={photo.alt} 
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                <div className="relative w-full h-56 overflow-hidden bg-black/50">
+                  <Image
+                    src={photo.src}
+                    alt={photo.alt}
+                    fill
+                    sizes="224px"
+                    className="object-cover transition-transform duration-700 group-hover:scale-110"
                     loading="lazy"
                   />
                 </div>
@@ -74,18 +85,14 @@ export const UGCCarousel = () => {
                     <span className="w-1 h-1 rounded-full bg-pink-500 animate-pulse" />
                     Cliente Verificado
                   </div>
-                  
                   <p className="text-xs italic text-gray-300 leading-snug line-clamp-3">
                     "{photo.comment}"
                   </p>
-
                   <div className="flex items-center justify-between mt-2 pt-2 border-t border-white/5">
                     <div className="flex gap-0.5">
                       {[...Array(photo.rating)].map((_, i) => <StarIcon key={i} />)}
                     </div>
-                    <p className="text-xs font-black text-white">
-                      - {photo.name}
-                    </p>
+                    <p className="text-xs font-black text-white">- {photo.name}</p>
                   </div>
                 </div>
               </div>
@@ -94,28 +101,29 @@ export const UGCCarousel = () => {
         </div>
       </section>
 
-      {/* MODAL LIGHTBOX */}
+      {/* Modal lightbox */}
       {selectedPhoto && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-10">
-          <div 
-            className="absolute inset-0 bg-black/80 backdrop-blur-md transition-opacity cursor-zoom-out"
+          <div
+            className="absolute inset-0 bg-black/80 backdrop-blur-md cursor-zoom-out"
             onClick={() => setSelectedPhoto(null)}
           />
-          
-          <div className="relative bg-[#0a1628] border border-white/10 rounded-3xl w-full max-w-4xl flex flex-col md:flex-row overflow-hidden shadow-[0_0_50px_rgba(0,0,0,0.8)] animate-in zoom-in-95 duration-200">
-            
-            <button 
+
+          <div className="relative bg-[#0a1628] border border-white/10 rounded-3xl w-full max-w-4xl flex flex-col md:flex-row overflow-hidden shadow-[0_0_50px_rgba(0,0,0,0.8)]">
+            <button
               onClick={() => setSelectedPhoto(null)}
               className="absolute top-4 right-4 z-20 w-10 h-10 bg-black/50 backdrop-blur-md rounded-full text-white flex items-center justify-center hover:bg-white/20 transition-colors"
             >
               ✕
             </button>
 
-            <div className="w-full md:w-3/5 h-[40vh] md:h-[70vh] bg-black">
-              <img 
-                src={selectedPhoto.src} 
-                alt={selectedPhoto.alt} 
-                className="w-full h-full object-contain md:object-cover"
+            <div className="relative w-full md:w-3/5 h-[40vh] md:h-[70vh] bg-black">
+              <Image
+                src={selectedPhoto.src}
+                alt={selectedPhoto.alt}
+                fill
+                sizes="(max-width: 768px) 100vw, 60vw"
+                className="object-contain md:object-cover"
               />
             </div>
 
@@ -123,21 +131,20 @@ export const UGCCarousel = () => {
               <div className="flex gap-1 mb-4">
                 {[...Array(selectedPhoto.rating)].map((_, i) => <StarIcon key={i} />)}
               </div>
-              
               <p className="text-lg md:text-xl text-white font-medium italic mb-6 leading-relaxed">
                 "{selectedPhoto.comment}"
               </p>
-              
               <div className="flex items-center gap-3 mb-10">
                 <div className="w-12 h-12 rounded-full bg-gradient-to-br from-pink-500 to-purple-600 flex items-center justify-center text-white font-black text-lg shadow-lg">
                   {selectedPhoto.name.charAt(0)}
                 </div>
                 <div>
                   <p className="text-white font-black">{selectedPhoto.name}</p>
-                  <p className="text-xs text-pink-400 uppercase tracking-widest font-bold">Compra Verificada</p>
+                  <p className="text-xs text-pink-400 uppercase tracking-widest font-bold">
+                    Compra Verificada
+                  </p>
                 </div>
               </div>
-
               <a
                 href={link}
                 target="_blank"
@@ -149,7 +156,6 @@ export const UGCCarousel = () => {
                 ¡Yo también quiero esta caja! 🔥
               </a>
             </div>
-
           </div>
         </div>
       )}

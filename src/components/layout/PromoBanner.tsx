@@ -8,28 +8,36 @@ export const PromoBanner = () => {
 
   return (
     <section className="glass-banner py-10 md:py-14 my-8 md:my-12">
+      {/* FIX: neon-border-top y neon-border-bottom ahora están definidos en globals.css */}
       <div className="neon-border-top" />
       <div className="neon-border-bottom" />
 
       <div className="max-w-4xl w-full mx-auto px-4 flex flex-col items-center justify-center text-center relative z-10">
-        
-        {/* Etiqueta de Urgencia Real */}
+
+        {/* Urgencia honesta — sin contadores falsos */}
         <div className="flex w-fit max-w-full mx-auto items-center justify-center gap-2 px-4 py-1.5 rounded-full mb-6 bg-pink-500/10 border border-pink-500/30 text-pink-500">
           <span className="shrink-0 w-2 h-2 rounded-full bg-pink-500 animate-ping" />
           <p className="text-[10px] sm:text-xs font-black tracking-widest uppercase m-0">
-            Pedidos Abiertos · Cierre hoy 8:00 PM
+            Promo de Inauguración · Cantidad Limitada
           </p>
         </div>
 
         <h3 className="text-2xl md:text-4xl font-black text-white mb-4 leading-tight">
-          ¡Solo quedan <span className="text-pink-500 drop-shadow-[0_0_15px_rgba(255,45,120,0.5)]">12 cajas</span> para entrega mañana! 🍩
+          Arma tu caja x4 como{" "}
+          <span className="text-pink-500 drop-shadow-[0_0_15px_rgba(255,45,120,0.5)]">
+            quieras
+          </span>{" "}
+          🍩
         </h3>
 
         <p className="text-sm md:text-lg mb-8 max-w-xl mx-auto text-gray-300 leading-relaxed">
-          Arma tu caja x4 mezclando clásicas y especiales. Todo al precio de inauguración: <strong className="text-white">$23.000</strong>. <span className="text-yellow-400 block sm:inline mt-1 sm:mt-0">El ahorro es real. 🔥</span>
+          Mezcla rellenas y especiales. Todo al precio de inauguración:{" "}
+          <strong className="text-white">$23.000</strong>.{" "}
+          <span className="text-yellow-400 block sm:inline mt-1 sm:mt-0">
+            El ahorro es real. 🔥
+          </span>
         </p>
 
-        {/* CTA Optimizado y Trackeado */}
         <a
           href={link}
           target="_blank"
