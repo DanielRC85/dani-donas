@@ -1,6 +1,7 @@
 // src/data/testimonials.ts
+// FUENTE ÚNICA DE VERDAD para todos los testimonios.
+// UGCCarousel y SocialProof importan de aquí — nunca hardcodear en los componentes.
 
-// 1. Tipado y Datos para las Fotos (Carrusel)
 export interface UGCPhoto {
   id: number;
   name: string;
@@ -10,52 +11,6 @@ export interface UGCPhoto {
   comment: string;
 }
 
-// 🍩 SÓLO COMENTARIOS 100% REALES (Distribuidos en las 5 fotos)
-export const ugcPhotosData: UGCPhoto[] = [
-  { 
-    id: 1, 
-    name: "Sebas",   
-    src: "/images/ugc/choco_chispas_chocolate.jpeg", 
-    alt: "Caja de donas de chocolate",  
-    rating: 5, 
-    comment: "Muy chimbas, deseo volver a pedir." 
-  },
-  { 
-    id: 2, 
-    name: "Jeison",  
-    src: "/images/ugc/choco_rellena.jpeg",           
-    alt: "Dona de chocolate rellena",   
-    rating: 5, 
-    comment: "Muy ricas y rellenitas." 
-  },
-  { 
-    id: 3, 
-    name: "Adriana", 
-    src: "/images/ugc/arequipe.jpeg",                
-    alt: "Dona de arequipe mordida",    
-    rating: 5, 
-    comment: "La de arequipe me encanta." 
-  },
-  { 
-    id: 4, 
-    name: "Augusto", 
-    src: "/images/ugc/Bosto_clasicas.jpeg",          
-    alt: "Caja de donas Boston",        
-    rating: 5, 
-    comment: "La dona Boston con maní y relleno de arequipe es deliciosa." 
-  },
-  { 
-    id: 5, 
-    name: "Camilo Sánchez",   
-    src: "/images/ugc/Boston_chispas.jpeg",          
-    alt: "Dona Boston con chispas",     
-    rating: 5, 
-    comment: "Muy buenas las donas, más rellenos me gustaron, gracias." 
-  },
-];
-
-
-// 2. Tipado y Datos para las Tarjetas de Texto (Prueba Social Abajo)
 export interface TextReview {
   id: number;
   name: string;
@@ -65,7 +20,51 @@ export interface TextReview {
   initials: string;
 }
 
-// 🚀 AQUI VA MAURICIO Y LOS COMENTARIOS COMPLEMENTARIOS
+// Fotos reales de clientes — carrusel visual
+export const ugcPhotosData: UGCPhoto[] = [
+  {
+    id: 1,
+    name: "Sebas",
+    src: "/images/ugc/choco_chispas_chocolate.jpeg",
+    alt: "Caja de donas de chocolate con chispas",
+    rating: 5,
+    comment: "Muy chimbas, deseo volver a pedir.",
+  },
+  {
+    id: 2,
+    name: "Jeison",
+    src: "/images/ugc/choco_rellena.jpeg",
+    alt: "Dona de chocolate rellena",
+    rating: 5,
+    comment: "Muy ricas y rellenitas.",
+  },
+  {
+    id: 3,
+    name: "Adriana",
+    src: "/images/ugc/arequipe.jpeg",
+    alt: "Dona de arequipe mordida",
+    rating: 5,
+    comment: "La de arequipe me encanta.",
+  },
+  {
+    id: 4,
+    name: "Augusto",
+    src: "/images/ugc/Bosto_clasicas.jpeg",
+    alt: "Caja de donas Boston clásicas",
+    rating: 5,
+    comment: "La dona Boston con maní y relleno de arequipe es deliciosa.",
+  },
+  {
+    id: 5,
+    name: "Camilo Sánchez",
+    src: "/images/ugc/Boston_chispas.jpeg",
+    alt: "Dona Boston con chispas de colores",
+    rating: 5,
+    comment: "Muy buenas las donas, más rellenos me gustaron, gracias.",
+  },
+];
+
+// Reviews de texto — sección de cierre
 export const textReviewsData: TextReview[] = [
   {
     id: 1,

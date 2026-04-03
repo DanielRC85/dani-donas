@@ -3,6 +3,8 @@
 import Image from "next/image";
 import { useState } from "react";
 import { generatePromoLink } from "@/utils/whatsapp";
+// FIX: importa de la fuente única de verdad — no duplicar datos aquí
+import { ugcPhotosData, type UGCPhoto } from "@/data/testimonials";
 
 const StarIcon = () => (
   <svg className="w-4 h-4 text-yellow-400 drop-shadow-[0_0_5px_rgba(255,215,0,0.8)]" fill="currentColor" viewBox="0 0 20 20">
@@ -10,28 +12,10 @@ const StarIcon = () => (
   </svg>
 );
 
-interface UGCPhoto {
-  id: number;
-  name: string;
-  src: string;
-  alt: string;
-  rating: number;
-  comment: string;
-}
-
-const ugcPhotos: UGCPhoto[] = [
-  { id: 1, name: "Sebas",   src: "/images/ugc/choco_chispas_chocolate.jpeg", alt: "Caja de donas de chocolate",  rating: 5, comment: "¡Muy chimbas! Ya deseo volver a pedir, me salvaron el antojo de la tarde." },
-  { id: 2, name: "Jeison",  src: "/images/ugc/choco_rellena.jpeg",           alt: "Dona de chocolate rellena",   rating: 5, comment: "Están muy ricas y bien rellenitas, no escatiman con el sabor." },
-  { id: 3, name: "Adriana", src: "/images/ugc/arequipe.jpeg",                alt: "Dona de arequipe mordida",    rating: 5, comment: "La de arequipe me encanta, es mi favorita absoluta. ¡Tienen que probarla!" },
-  { id: 4, name: "Augusto", src: "/images/ugc/Bosto_clasicas.jpeg",          alt: "Caja de donas Boston",        rating: 5, comment: "La Boston con maní y relleno de arequipe es deliciosa, el sabor es de otro nivel." },
-  { id: 5, name: "Santi",   src: "/images/ugc/Boston_chispas.jpeg",          alt: "Dona Boston con chispas",     rating: 5, comment: "Pedí la caja x4 para compartir y todas estaban 10/10. Muy frescas." },
-];
-
-// 🚀 SIMULACIÓN SUPERADA: Multiplicamos x8 para asegurar que monitores UltraWide y 4K
-// tengan suficiente ancho para completar el bucle CSS del 50% sin espacios vacíos.
-const infinitePhotos = [
-  ...ugcPhotos, ...ugcPhotos, ...ugcPhotos, ...ugcPhotos,
-  ...ugcPhotos, ...ugcPhotos, ...ugcPhotos, ...ugcPhotos
+// x8 repeticiones para cubrir monitores ultra-wide sin espacios vacíos
+const infinitePhotos: UGCPhoto[] = [
+  ...ugcPhotosData, ...ugcPhotosData, ...ugcPhotosData, ...ugcPhotosData,
+  ...ugcPhotosData, ...ugcPhotosData, ...ugcPhotosData, ...ugcPhotosData,
 ];
 
 export const UGCCarousel = () => {
@@ -51,17 +35,15 @@ export const UGCCarousel = () => {
             <br className="hidden md:block" />
             Nuestra realidad
           </h2>
-          <p className="text-base text-gray-400 mt-2 text-center">
+          <p className="text-base text-gray-400 mt-3 text-center">
             Haz clic en las fotos para verlas de cerca
           </p>
         </div>
 
         <div className="relative w-full overflow-hidden flex">
-          {/* Fade laterales extendidos para mayor suavidad en pantallas grandes */}
           <div className="absolute left-0 top-0 bottom-0 w-24 md:w-48 bg-gradient-to-r from-[#050d1a] to-transparent z-10 pointer-events-none" />
           <div className="absolute right-0 top-0 bottom-0 w-24 md:w-48 bg-gradient-to-l from-[#050d1a] to-transparent z-10 pointer-events-none" />
 
-          {/* Cinta infinita */}
           <div className="flex animate-scroll-infinite gap-6 pr-6">
             {infinitePhotos.map((photo, index) => (
               <div
@@ -108,7 +90,6 @@ export const UGCCarousel = () => {
             className="absolute inset-0 bg-black/80 backdrop-blur-md cursor-zoom-out"
             onClick={() => setSelectedPhoto(null)}
           />
-
           <div className="relative bg-[#0a1628] border border-white/10 rounded-3xl w-full max-w-4xl flex flex-col md:flex-row overflow-hidden shadow-[0_0_50px_rgba(0,0,0,0.8)]">
             <button
               onClick={() => setSelectedPhoto(null)}
