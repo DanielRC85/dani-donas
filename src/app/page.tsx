@@ -1,3 +1,5 @@
+"use client";
+
 import { Hero } from "@/components/layout/Hero";
 import { UGCCarousel } from "@/components/layout/UGCCarousel";
 import { SocialProof } from "@/components/layout/SocialProof";
@@ -10,14 +12,14 @@ import { generatePromoLink } from "@/utils/whatsapp";
 /*
   ESTRUCTURA — patrón AIDA
   ────────────────────────────────────────────────
-  A  Hero                   → captura atención (3 seg)
-  I  UGC Carousel           → prueba social visual antes del precio
-  D  DonaSpotlight          → drama de producto, el más vendido
-     Catálogo Rellenas      → el usuario ya tiene antojo, ahora elige
+  A  Hero                    → captura atención (3 seg)
+  I  UGC Carousel            → prueba social visual antes del precio
+  D  DonaSpotlight           → drama de producto, el más vendido
+     Catálogo Rellenas       → el usuario ya tiene antojo, ahora elige
      Catálogo Especiales
      ¿Cómo pedir?           → proceso simple antes del detalle logístico
-     DeliverySection        → el detalle del paso 03
-     SocialProof (texto)    → refuerzo racional antes de la decisión final
+     DeliverySection         → el detalle del paso 03
+     SocialProof (texto)     → refuerzo racional antes de la decisión final
   A  CTA Final + Footer
   ────────────────────────────────────────────────
   Divisores entre secciones:
@@ -34,10 +36,10 @@ const rellenas: Product[] = [
 ];
 
 const especiales: Product[] = [
-  { id: "6", name: "Dona Combinada",     price: 6500, promoPrice: 5750, category: "grande", type: "ESPECIAL RELLENA",   description: "Arequipe y Chantilly juntos",             image: "/images/donas/combinada.jpg",      emoji: "🌟", neonColor: "#ff2d78", isPromo: true },
-  { id: "7", name: "Dona Boston",        price: 6500, promoPrice: 5750, category: "grande", type: "ESPECIAL CHOCOLATE", description: "Cubierta de chocolate oscuro",            image: "/images/donas/boston.jpg",         emoji: "🍫", neonColor: "#00f5ff", isPromo: true },
+  { id: "6", name: "Dona Combinada",     price: 6500, promoPrice: 5750, category: "grande", type: "ESPECIAL RELLENA",   description: "Arequipe y Chantilly juntos",             image: "/images/donas/combinada.jpg",       emoji: "🌟", neonColor: "#ff2d78", isPromo: true },
+  { id: "7", name: "Dona Boston",         price: 6500, promoPrice: 5750, category: "grande", type: "ESPECIAL CHOCOLATE", description: "Cubierta de chocolate oscuro",            image: "/images/donas/boston.jpg",          emoji: "🍫", neonColor: "#00f5ff", isPromo: true },
   { id: "8", name: "Boston con Chispas", price: 6500, promoPrice: 5750, category: "grande", type: "ESPECIAL CHOCOLATE", description: "Chocolate con chispas de colores",        image: "/images/donas/boston-chispas.jpg", emoji: "🎉", neonColor: "#ff00ff", isPromo: true },
-  { id: "9", name: "Boston con Maní",    price: 6500, promoPrice: 5750, category: "grande", type: "ESPECIAL CHOCOLATE", description: "Chocolate oscuro con maní crocante",      image: "/images/donas/boston-mani.jpg",    emoji: "🥜", neonColor: "#ffd700", isPromo: true },
+  { id: "9", name: "Boston con Maní",     price: 6500, promoPrice: 5750, category: "grande", type: "ESPECIAL CHOCOLATE", description: "Chocolate oscuro con maní crocante",      image: "/images/donas/boston-mani.jpg",    emoji: "🥜", neonColor: "#ffd700", isPromo: true },
 ];
 
 export default function Home() {
@@ -50,23 +52,12 @@ export default function Home() {
       <Hero />
 
       {/* ── 2. INTEREST — fotos reales de clientes ── */}
-      {/*
-        UGC va ANTES del catálogo: activa FOMO antes de mostrar precios.
-        La imagen de pares convence antes de que el precio importe.
-      */}
       <UGCCarousel />
 
       {/* Divisor entre UGC y spotlight */}
       <div className="section-divider w-full" />
 
       {/* ── 3. DESIRE — spotlight del producto estrella ── */}
-      {/*
-        La dona de arequipe es la más pedida según tus reviews.
-        Un "hero de producto" con efecto 3D CSS aumenta el deseo
-        específico antes de que el usuario entre al catálogo completo.
-        Úsala como "recomendación editorial" de la marca.
-        Para cambiar el sabor destacado: edita name, imageSrc y accentColor.
-      */}
       <DonaSpotlight
         name="Dona de Arequipe"
         imageSrc="/images/donas/arequipe.jpg"
@@ -174,11 +165,6 @@ export default function Home() {
       </section>
 
       {/* ── 5. DESIRE — ¿Cómo pedir? ── */}
-      {/*
-        Proceso ANTES de logística:
-        El usuario entiende el flujo general (3 pasos)
-        y DeliverySection es el detalle del paso 03.
-      */}
       <div className="section-divider w-full" />
 
       <section className="w-full flex justify-center" style={{ paddingTop: "5rem", paddingBottom: "5rem" }}>
@@ -219,10 +205,6 @@ export default function Home() {
       <DeliverySection />
 
       {/* ── 7. DESIRE LATE — Testimonios texto ── */}
-      {/*
-        Reviews de texto van al final: refuerzo racional
-        justo antes de la decisión de compra.
-      */}
       <SocialProof />
 
       {/* ── 8. ACTION — CTA final ── */}
@@ -238,26 +220,30 @@ export default function Home() {
             background: "radial-gradient(ellipse 80% 60% at 50% 0%, rgba(255,45,120,0.1) 0%, transparent 70%)",
           }}
         />
-        <div className="relative z-10 max-w-2xl w-full px-5 mb-16">
+        <div className="relative z-10 max-w-2xl w-full px-5 mb-16 flex flex-col items-center">
           <h2 className="text-4xl md:text-5xl font-black text-white mb-4 leading-tight">
             No te quedes sin probarlas 😏
           </h2>
           <p className="mb-10 text-base md:text-lg" style={{ color: "rgba(255,255,255,0.4)" }}>
             Promo de inauguración · Unidades limitadas todos los días
           </p>
-          <a
-            href={promoLink}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group relative inline-flex items-center justify-center gap-3 px-12 py-5 rounded-2xl font-black text-lg text-white overflow-hidden transition-all duration-300 hover:scale-105"
-            style={{
-              background: "linear-gradient(135deg, #ff2d78 0%, #ff00ff 50%, #7c3aed 100%)",
-              boxShadow: "0 0 32px rgba(255,45,120,0.45)",
-            }}
-          >
-            <span className="absolute -left-[150%] top-0 h-full w-[150%] bg-white/20 skew-x-12 group-hover:left-[150%] transition-all duration-700" />
-            <span className="relative z-10">Pedir mi caja ahora 🔥</span>
-          </a>
+          
+          {/* RECTIFICACIÓN QUIRÚRGICA: Centrado absoluto y amplitud máxima */}
+          <div className="w-full flex justify-center">
+            <a
+              href={promoLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative inline-flex items-center justify-center gap-3 px-16 py-6 w-full sm:w-fit min-w-[340px] rounded-2xl font-black text-xl text-white overflow-hidden transition-all duration-300 hover:scale-105 shadow-2xl"
+              style={{
+                background: "linear-gradient(135deg, #ff2d78 0%, #ff00ff 50%, #7c3aed 100%)",
+                boxShadow: "0 0 40px rgba(255,45,120,0.5)",
+              }}
+            >
+              <span className="absolute -left-[150%] top-0 h-full w-[150%] bg-white/20 skew-x-12 group-hover:left-[150%] transition-all duration-1000" />
+              <span className="relative z-10">Pedir mi caja ahora 🔥</span>
+            </a>
+          </div>
         </div>
 
         <footer

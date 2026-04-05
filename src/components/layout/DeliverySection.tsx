@@ -81,7 +81,7 @@ export const DeliverySection = () => {
                 <div>
                   <p className="text-lg font-black text-white mb-2">Domicilio a tu puerta</p>
                   <p className="text-sm md:text-base leading-relaxed text-gray-400">
-                    Costo desde <strong className="text-white">$12.000</strong> según zona.
+                    Costo desde <strong className="text-white">$15.000</strong> según zona.
                   </p>
                 </div>
               </div>
@@ -105,9 +105,9 @@ export const DeliverySection = () => {
             href={promoLink}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-3 px-8 py-4 rounded-full text-base font-bold text-cyan-400 bg-cyan-500/10 border border-cyan-500/30 transition-all duration-300 hover:bg-cyan-500/20 hover:text-cyan-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(0,245,255,0.2)]"
+            className="inline-flex items-center justify-center text-center gap-3 px-12 py-5 w-full sm:w-fit min-w-[280px] rounded-full text-base font-bold text-cyan-400 bg-cyan-500/10 border border-cyan-500/30 transition-all duration-300 hover:bg-cyan-500/20 hover:text-cyan-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(0,245,255,0.2)]"
           >
-            Coordinar mi entrega ahora →
+            Coordinar mi entrega ahora
           </a>
         </div>
       </div>
